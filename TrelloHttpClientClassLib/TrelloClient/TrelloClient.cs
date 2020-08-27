@@ -70,7 +70,7 @@ namespace TrelloHttpClientClassLib.TrelloClient
             return boards;
         }
 
-        public async Task<IList<CardsList>> GetListsByBoardId(string boardId)
+        public async Task<IList<CardsList>> GetListsByBoardIdAsync(string boardId)
         {
             if (string.IsNullOrEmpty(boardId))
             {
@@ -98,7 +98,7 @@ namespace TrelloHttpClientClassLib.TrelloClient
             return lists;
         }
 
-        public async Task<IList<Card>> GetCardsByListId(string listId)
+        public async Task<IList<Card>> GetCardsByListIdAsync(string listId)
         {
             if (string.IsNullOrEmpty(listId))
             {
@@ -126,7 +126,7 @@ namespace TrelloHttpClientClassLib.TrelloClient
             return cards;
         }
 
-        public async Task CreateCardByListId(string listId, string name, string desc)
+        public async Task CreateCardByListIdAsync(string listId, string name, string desc)
         {
             if (string.IsNullOrEmpty(_apiToken))
             {

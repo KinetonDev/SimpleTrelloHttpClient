@@ -14,7 +14,7 @@ namespace TrelloHttpClient
 
             foreach (var board in boards)
             {
-                var lists = await client.GetListsByBoardId(board.Id);
+                var lists = await client.GetListsByBoardIdAsync(board.Id);
 
                 Console.WriteLine(board.Id);
                 Console.WriteLine(board.Name);
@@ -26,7 +26,7 @@ namespace TrelloHttpClient
                     Console.WriteLine("\t" + list.Name);
                     Console.WriteLine("\t" + list.BoardId);
 
-                    var cards = await client.GetCardsByListId(list.Id);
+                    var cards = await client.GetCardsByListIdAsync(list.Id);
         
                     foreach (var card in cards)
                     {
