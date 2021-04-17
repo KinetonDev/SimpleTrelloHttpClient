@@ -2,7 +2,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\TrelloHttpClientClassLib\TrelloHttpClientClassLib.csproj" />
-      <ProjectReference Include="..\TrelloHttpClientLib\TrelloHttpClientLib.csproj" />
     </ItemGroup>
 
     <PropertyGroup>
