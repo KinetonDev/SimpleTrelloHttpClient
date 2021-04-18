@@ -14,12 +14,11 @@ namespace TrelloHttpClientClassLib.TrelloClient
     //get cards
     //create card in the list
     //enter credentials in the constructor
+    
     public class TrelloClient
     {
+        private readonly Credentials _credentials;
         private const string TrelloPath = "https://api.trello.com";
-        public string UserName { get; private set; }
-        public string ApiKey { get; private set;}
-        public string ApiToken { get; private set;}
 
         /// <summary>
         /// 
@@ -41,10 +40,8 @@ namespace TrelloHttpClientClassLib.TrelloClient
             {
                 throw new ArgumentNullException(nameof(apiKey), "Api key name cannot be null or empty!");
             }
-            
-            UserName = userName;
-            ApiKey = apiKey;
-            ApiToken = apiToken;
+
+            _credentials = new Credentials{ UserName = userName, ApiKey = apiKey, ApiToken = apiToken};
         }
         
         public async Task<IList<Board>> GetBoardsAsync()
@@ -54,7 +51,7 @@ namespace TrelloHttpClientClassLib.TrelloClient
             var boardsResponse =
                 await httpClient.GetAsync(
                     TrelloPath +
-                    $"/1/members/{UserName}/boards?{GetQueryCredentialsString()}" 
+                    $"/1/members/{_credentials.UserName}/boards?{GetQueryCredentialsString()}" 
                     );
             
             if (boardsResponse.StatusCode != HttpStatusCode.OK)
@@ -128,7 +125,7 @@ namespace TrelloHttpClientClassLib.TrelloClient
 
         public async Task CreateCardByListIdAsync(string listId, string name, string desc)
         {
-            if (string.IsNullOrEmpty(ApiToken))
+            if (string.IsNullOrEmpty(_credentials.ApiToken))
             {
                 throw new Exception("Enter api token before creating!");
             }
@@ -154,7 +151,7 @@ namespace TrelloHttpClientClassLib.TrelloClient
 
         private string GetQueryCredentialsString()
         {
-            return $"key={ApiKey}{(ApiToken == null ? "" : $"&token={ApiToken}")}";
+            return $"key={_credentials.ApiKey}{(_credentials.ApiToken == null ? "" : $"&token={_credentials.ApiToken}")}";
         }
     }
 }

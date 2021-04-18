@@ -8,7 +8,13 @@ namespace TrelloHttpClient
     {
         static async Task Main(string[] args)
         {
-            var client = new TrelloClient("", "", "");
+            var credentialsService = new CredentialsService.CredentialsService();
+            var credentials = await credentialsService.GetCredentials();
+            
+            var client = new TrelloClient(
+                credentials.UserName, 
+                credentials.ApiKey, 
+                credentials.ApiToken);
 
             var boards = await client.GetBoardsAsync();
 
