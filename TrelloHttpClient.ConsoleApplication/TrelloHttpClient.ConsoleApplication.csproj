@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <ItemGroup>
+      <ProjectReference Include="..\TrelloHttpClient.ClassLib\TrelloHttpClient.ClassLib.csproj" />
+    </ItemGroup>
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <RootNamespace>TrelloHttpClient</RootNamespace>
+    </PropertyGroup>
+
+</Project>
